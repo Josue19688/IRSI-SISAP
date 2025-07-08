@@ -52,7 +52,7 @@ for file in "${csv_files[@]}"; do
     echo "Procesando archivo: $file"
 
     tail -n +2 "$file" | while IFS=',' read -r id_transaccion fecha_emision nombre correo telefono direccion ciudad cantidad monto pago estado_pago ip timestamp observaciones; do
-        echo "DEBUG: id_transaccion=$id_transaccion, nombre=$nombre, monto=$monto"
+        #echo "DEBUG: id_transaccion=$id_transaccion, nombre=$nombre, monto=$monto"
 
         # Escapar campos con caracteres especiales antes de usar en LaTeX
         nombre=$(escape_latex "$nombre")
