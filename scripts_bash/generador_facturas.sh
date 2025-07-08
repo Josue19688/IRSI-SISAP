@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Forzar codificación UTF-8 en el entorno
+
 export LANG=es_GT.UTF-8
 export LC_ALL=es_GT.UTF-8
 
@@ -91,10 +91,10 @@ for file in "${csv_files[@]}"; do
         pdflatex -interaction=nonstopmode -output-directory="$output_dir" "$tex" 2>&1 | tee -a "$log"
 
         if [ $? -eq 0 ]; then
-            echo "✅ Factura generada: $pdf"
+            echo "Factura generada: $pdf"
             echo "$pdf,$correo" >> "$pendientes"
         else
-            echo "❌ Error al generar PDF para ID: $id_transaccion" >> "$log"
+            echo "Error al generar PDF para ID: $id_transaccion" >> "$log"
         fi
 
         # rm "$tex"  # Comentar para depurar

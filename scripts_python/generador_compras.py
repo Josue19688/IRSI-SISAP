@@ -45,7 +45,7 @@ def generar_registro(fake, idx):
     pagos = ["completo", "fraccionado"]
     estados = ["exitoso", "fallido"]
 
-    # Genera datos falsos y aplica escape LaTeX en los campos que se usarán en la plantilla
+   
     nombre = latex_escape(fake.name())
     correo = latex_escape(fake.email())
     telefono = latex_escape(fake.phone_number())
