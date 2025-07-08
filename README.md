@@ -1,5 +1,7 @@
 # 🧾 Sistema Automatizado de Facturación y Gestión de Usuarios para Tiendas Minoristas
 
+![alt text](image.png)
+
 > Proyecto Integrador – IRSI-SISAP | Curso de Scripting  
 > Desarrollado por: Josué
 
