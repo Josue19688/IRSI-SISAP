@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+*.venv/
+env/
+venv/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VS Code settings and workspace
+.vscode/
+
+# Bash generated files (si hay temporales o logs)
+*.log
+
+# Archivos LaTeX compilados y temporales
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.blg
+*.bbl
+*.brf
+*.nlo
+*.nls
+*.ilg
+*.inx
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.pdf
+
+# PDFs de salida (generados)
+data/facturas/*.pdf
+
+# CSVs de datos (generados)
+data/compras/*.csv
+
+# Archivos de backup comunes
+*~
+*.bak
+*.swp
+*.swo
+
+# Archivos de sistema (Windows)
+Thumbs.db
+.DS_Store
