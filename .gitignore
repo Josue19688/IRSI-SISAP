@@ -42,13 +42,13 @@ pip-delete-this-directory.txt
 *.synctex.gz
 *.fdb_latexmk
 *.fls
-*.pdf
+#*.pdf
 
-# PDFs de salida (generados)
-data/facturas/*.pdf
+# PDFs de salida (generados)  comentados solo para verificacion los datos no son veridicos 
+#data/facturas/*.pdf
 
 # CSVs de datos (generados)
-data/compras/*.csv
+#data/compras/*.csv
 
 # Archivos de backup comunes
 *~

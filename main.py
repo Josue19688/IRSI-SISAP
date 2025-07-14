@@ -3,6 +3,7 @@ import os
 import subprocess
 import shutil
 from scripts_python.generador_compras import generar_csv_compras
+from scripts_python.enviador import procesar_csv, resumen_final
 import argparse
 
 
@@ -67,8 +68,7 @@ def ejecutar_script_bash(ruta_script_relativa):
     print("-" * 60)
 
 
-def main(query, factura):
-    
+def main(query, factura, informe, enviar):
     if query:
         print("Generando archivo de compras...")
         archivo_csv = generar_csv_compras(10)
@@ -77,6 +77,20 @@ def main(query, factura):
     if factura:
         ejecutar_script_bash("scripts_bash/generador_facturas.sh")
 
+    if informe:
+        resumen_final()
+
+    if enviar:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        #ruta_csv = os.path.join(script_dir, "../data/pendientes_envio.csv")
+        ruta_csv = os.path.join(script_dir, "data", "pendientes_envio.csv")
+
+        if not os.path.exists(ruta_csv):
+            print(f"Archivo CSV no encontrado: {ruta_csv}")
+            return
+        procesar_csv(ruta_csv)
+        resumen_final()
+
 
 if __name__ == "__main__":
     print(ascii_art)
@@ -84,9 +98,17 @@ if __name__ == "__main__":
     parse.add_argument("-q", "--query", type=str,
                        help="Genera el cvs compras")
     parse.add_argument("-f", "--factura", type=str,
-                       help="Genera el facturas compras")
+                       help="Genera facturas de compras")
+    parse.add_argument("-r", "--informe", type=str,
+                       help="Genera el informe de compras")
+    parse.add_argument("-e", "--enviar", type=str,
+                       help="Enviar Facturas a clientes")
     args=parse.parse_args()
-    main(query=args.query, factura=args.factura)
+    main(query=args.query, factura=args.factura, informe=args.informe, enviar=args.enviar)
+
+
+
+
 
 
 
