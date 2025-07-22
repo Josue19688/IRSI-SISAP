@@ -19,45 +19,52 @@ Este sistema modular y multiplataforma combina scripts en **Python**, **Bash**, 
 ```plaintext
 proyecto_facturacion_irsis_sisap/
 │
-├── scripts_python/              → Scripts en Python para generación y envío
-│   ├── generador_compras.py
-│   ├── enviador.py
-│   └── generador_empleados.py
+├── 📁 core/                     ← Dominio principal del sistema
+│   ├── compras/                ← Lógica de generación de compras (Python)
+│   │   └── generador_compras.py
+│   ├── facturacion/            ← Sustitución y generación PDF (Bash + LaTeX)
+│   │   ├── generador_facturas.sh
+│   │   └── plantilla_factura.tex
+│   ├── envios/                 ← Envío de correos (Python)
+│   │   └── enviador.py
+│   └── usuarios/               ← Gestión de empleados temporales (PowerShell)
+│       └── usuarios.ps1
 │
-├── scripts_bash/                → Scripts Bash para automatización y facturas
-│   ├── generador_facturas.sh
-│   ├── cron_job.sh
-│   └── resumen_diario.sh
+├── 📁 infrastructure/          ← Automatización, tareas programadas, y ejecución cruzada
+│   ├── cron/
+│   │   └── cron_jobs.sh
+│   ├── task_scheduler/
+│   │   └── tareas_diarias.xml (si estás en Windows)
+│   └── reportes/
+│       └── resumen_diario.py
 │
-├── scripts_powershell/          → Gestión de usuarios temporales
-│   └── usuarios.ps1
+├── 📁 data/                    ← Datos generados o leídos (entradas y salidas)
+│   ├── csv/
+│   │   ├── compras_*.csv
+│   │   ├── empleados_*.csv
+│   │   └── pendientes_envio.csv
+│   ├── facturas/
+│   │   └── *.pdf
+│   └── logs/
+│       ├── log_diario.log
+│       ├── log_envios.csv
+│       └── log_usuarios.txt
 │
-├── plantillas_latex/            → Plantillas de facturación en LaTeX
-│   └── plantilla_factura.tex
+├── 📁 tests/                   ← Casos de prueba de scripts (si aplica)
+│   ├── test_generador.py
+│   └── test_enviador.py
 │
-├── data/                        → Archivos generados y registros del sistema
-│   ├── ventas_YYYYMMDD.csv
-│   ├── pendientes_envio.csv
-│   ├── empleados.csv
-│   ├── log_diario.log
-│   ├── log_envios.csv
-│   └── log_usuarios.log
+├── 📁 docs/                    ← Reporte técnico, README, apéndices
+│   ├── reporte_final_proyecto.pdf
+│   ├── instrucciones_de_uso.pdf
+│   └── capturas/
+│       ├── correo_ok.png
+│       └── usuario_ok.png
 │
-├── facturas_generadas/          → Facturas generadas en PDF
-│   └── factura_XXXX.pdf
+├── 📁 config/                  ← Configuraciones generales y rutas base
+│   └── settings.ini
 │
-├── evidencia/                   → Capturas de ejecución y pruebas
-│   ├── correo_enviado.png
-│   ├── usuario_creado_windows.png
-│   ├── factura_ejemplo.png
-│   └── cron_configurado.png
-│
-├── documentacion/               → Reporte final del proyecto
-│   ├── reporte_final.pdf
-│   └── assets_diagrama/
-│       └── flujo_sistema.png
-│
-└── README.md                    → Este documento
+└── 📄 README.md                ← Instrucciones del sistema (técnicas y de uso)
 ```
 
 ---
