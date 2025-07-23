@@ -15,15 +15,19 @@ Este sistema modular y multiplataforma combina scripts en **Python**, **Bash**, 
 ---
 
 ## 🔁 COMANDOS A UTILIZAR 
----
-pip install -r requirements.txt   
 
-
+# 📄 Generar archivo CSV con compras pendientes
 python main.py -g "Generar CSV compras"
+
+# 🧾 Generar facturas en PDF a partir del archivo CSV
 python main.py -f "Generar Facturas"
-python main.py -e "Enviar Facturas via correo electronico"
+
+# 📬 Enviar facturas por correo electrónico
+python main.py -e "Enviar Facturas via correo electrónico"
+
+# 📊 Enviar informe diario consolidado (logs, CSV, usuarios, facturación, envíos)
 python main.py -i "Enviar informe resumido de todos los logs generados"
----
+
 
 ## ⚙️ Estructura del Proyecto
 
