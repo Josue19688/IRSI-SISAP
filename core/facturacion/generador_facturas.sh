@@ -6,11 +6,11 @@ export LC_ALL=es_GT.UTF-8
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-csv_dir="$SCRIPT_DIR/../data/compras"
-template="$SCRIPT_DIR/../template/plantilla_facturas.tex"
-output_dir="$SCRIPT_DIR/../data/facturas"
-log="$SCRIPT_DIR/../data/log_diario.log"
-pendientes="$SCRIPT_DIR/../data/pendientes_envio.csv"
+csv_dir="$SCRIPT_DIR/../../data/csv"
+template="$SCRIPT_DIR/plantilla_facturas.tex"
+output_dir="$SCRIPT_DIR/../../data/facturas"
+log="$SCRIPT_DIR/../../data/logs/log_diario.log"
+pendientes="$SCRIPT_DIR/../../data/csv/pendientes_envio.csv"
 
 mkdir -p "$output_dir"
 : > "$pendientes"
@@ -44,7 +44,7 @@ escape_latex() {
         -e 's/\^/\\^/g' \
         -e 's/~/\\~/g' \
         -e 's/"/''/g'
-        # línea eliminada: -e "s/'/`/g"
+        
 }
 
 
@@ -52,9 +52,7 @@ for file in "${csv_files[@]}"; do
     echo "Procesando archivo: $file"
 
     tail -n +2 "$file" | while IFS=',' read -r id_transaccion fecha_emision nombre correo telefono direccion ciudad cantidad monto pago estado_pago ip timestamp observaciones; do
-        #echo "DEBUG: id_transaccion=$id_transaccion, nombre=$nombre, monto=$monto"
-
-        # Escapar campos con caracteres especiales antes de usar en LaTeX
+       
         nombre=$(escape_latex "$nombre")
         direccion=$(escape_latex "$direccion")
         ciudad=$(escape_latex "$ciudad")

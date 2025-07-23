@@ -3,6 +3,12 @@ import csv
 from faker import Faker
 from random import randint, choice
 from datetime import datetime
+from core.utils.logger import agregar_log
+
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+proyecto_dir = os.path.abspath(os.path.join(script_dir, "../../"))
+log_path_csv = os.path.join(proyecto_dir, "data", "logs", "generacion_compras_csv.log")
 
 def latex_escape(text):
     if not isinstance(text, str):
@@ -37,7 +43,7 @@ def latex_escape(text):
 
 def crear_directorio_salida():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    output_dir = os.path.join(BASE_DIR, "../data", "compras")
+    output_dir = os.path.join(BASE_DIR, "../../data", "csv")
     os.makedirs(output_dir, exist_ok=True)
     return output_dir
 
@@ -98,6 +104,8 @@ def guardar_csv(registros, output_dir):
         writer.writerow(headers)
         writer.writerows(registros)
     
+    agregar_log(log_path_csv, [datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "CSV generado", filename, f"Registros: {len(registros)}"])
+    
     return filepath
 
 def generar_csv_compras(num_registros=10):
@@ -106,7 +114,3 @@ def generar_csv_compras(num_registros=10):
     filepath = guardar_csv(registros, output_dir)
     print(f"Archivo generado: {filepath}")
     return filepath
-
-# Para probarlo directamente descomenta esto:
-# if __name__ == "__main__":
-#     generar_csv_compras(10)

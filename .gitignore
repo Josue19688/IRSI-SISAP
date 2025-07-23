@@ -48,7 +48,9 @@ pip-delete-this-directory.txt
 #data/facturas/*.pdf
 
 # CSVs de datos (generados)
-#data/compras/*.csv
+data/csv/*.csv
+data/logs/*.log
+data/logs/*.xlsx
 
 # Archivos de backup comunes
 *~
