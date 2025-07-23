@@ -16,16 +16,16 @@ Este sistema modular y multiplataforma combina scripts en **Python**, **Bash**, 
 
 ## 🔁 COMANDOS A UTILIZAR 
 
-# 📄 Generar archivo CSV con compras pendientes
+📄 Generar archivo CSV con compras pendientes
 python main.py -g "Generar CSV compras"
 
-# 🧾 Generar facturas en PDF a partir del archivo CSV
+🧾 Generar facturas en PDF a partir del archivo CSV
 python main.py -f "Generar Facturas"
 
-# 📬 Enviar facturas por correo electrónico
+📬 Enviar facturas por correo electrónico
 python main.py -e "Enviar Facturas via correo electrónico"
 
-# 📊 Enviar informe diario consolidado (logs, CSV, usuarios, facturación, envíos)
+📊 Enviar informe diario consolidado (logs, CSV, usuarios, facturación, envíos)
 python main.py -i "Enviar informe resumido de todos los logs generados"
 
 
