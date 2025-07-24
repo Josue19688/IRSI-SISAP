@@ -75,7 +75,21 @@ def ejecutar_script_bash(ruta_script_relativa):
     print("-" * 60)
 
 
-def main(generar, factura, informe, enviar):
+def gestionar_usuarios_temporales(ruta_csv):
+    script_path = os.path.join("core", "usuarios", "usuarios.ps1")
+    command = [
+        "powershell",
+        "-ExecutionPolicy", "Bypass",
+        "-File", script_path,
+        "-CsvPath", ruta_csv
+    ]
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
+        print("Ejecución exitosa:\n", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print("Error al ejecutar PowerShell:\n", e.stderr)
+
+def main(generar, factura, informe, enviar, usuarios):
     if generar:
         print("Generando archivo de compras...")
         archivo_csv = generar_csv_compras(3)
@@ -98,6 +112,10 @@ def main(generar, factura, informe, enviar):
             return
         procesar_csv(ruta_csv)
         #resumen_final()
+    
+    if usuarios:
+        ruta_csv = os.path.join(RAIZ_PROYECTO, "data", "empleados.csv")
+        gestionar_usuarios_temporales(ruta_csv)
 
 
 if __name__ == "__main__":
@@ -111,8 +129,10 @@ if __name__ == "__main__":
                        help="Genera el informe de compras")
     parse.add_argument("-e", "--enviar", type=str,
                        help="Enviar Facturas a clientes")
+    parse.add_argument("-u", "--usuarios", action="store_true",
+                       help="Gestiona los usuarios temporales desde empleados.csv")
     args=parse.parse_args()
-    main(generar=args.generar, factura=args.factura, informe=args.informe, enviar=args.enviar)
+    main(generar=args.generar, factura=args.factura, informe=args.informe, enviar=args.enviar, usuarios=args.usuarios)
 
 
 
